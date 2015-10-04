@@ -26,7 +26,46 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <? foreach ($_jsArr as $js) : ?>
+    <script src="<?=$js?>"></script>
+    <? endforeach; ?>
 
+<script type="text/javascript">
+$(document).ready(function() {
+    initGrowls();
+});
+function addGrowlMessage(type, message) {
+    var str = '<div class="growl growl-large growl-';
+    if (type == 0) {
+        str += 'notice">';
+    } else {
+        str += 'error">';
+    }
+
+    str += '<div class="growl-close">x</div><div class="growl-title">';
+    if (type == 0) {
+        str += 'Success';
+    } else {
+        str += 'Error';
+    }
+    str += '</div>';
+
+    str += '<div class="growl-message">' + message + '</div></div>';
+
+    $('.growl').each(function() { $(this).remove(); });
+    $('body').prepend(str);
+    initGrowls();
+}
+
+function initGrowls() {
+    $('.growl').fadeIn('slow');
+    setTimeout(function() { $('.growl').fadeOut('slow', function() { $(this).remove(); }); }, 6000)
+
+    $('.growl-close').click(function() {
+        $('.growl').fadeOut('slow', function() { $(this).remove(); });
+    });
+}
+</script>
 </head>
 
 <body>
@@ -39,22 +78,11 @@
 
             <div class="container-fluid">
 
-            	<!-- Page Heading -->
-            	<div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            Dashboard <small>Statistics Overview</small>
-                        </h1>
-                        <ol class="breadcrumb">
-                            <li class="active">
-                                <i class="fa fa-dashboard"></i> Dashboard
-                            </li>
-                        </ol>
-                    </div>
-                </div>
+            <?php $this->load->view('manage/partials/page-heading')?>
 
-
-
+            <section class="wrapper scrollable">
+                <?=@$_body?>
+            </section>
 
             </div>
             <!-- /.container-fluid -->
