@@ -1,10 +1,12 @@
 <?php
 class Cards_model extends CI_Model {
 
+    protected $_table;
         public function __construct()
         {
                 // Call the CI_Model constructor
                 parent::__construct();
+                $this->_table = 'cards';
         }
 
         public function get_last_entries($limit)
@@ -13,16 +15,15 @@ class Cards_model extends CI_Model {
                 return $query->result();
         }
 
-        public function insert_entry($data)
+        public function add($data)
         {
         	if(!$data) return false;
-
-                $data['created']   = time();
-
-            return $this->db->insert('cards', $data);
+            $data['created'] = time();
+            $this->db->insert($this->_table, $data);
+            return $this->db->insert_id();
         }
 
-        public function update_entry($data = null)
+        public function update($data = null)
         {
         	if(!$data) return false;
 

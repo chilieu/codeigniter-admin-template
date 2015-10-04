@@ -59,12 +59,12 @@ class Global_Controller extends CI_Controller
 
 	public function addJS($jsSrc)
 	{
-		$this->viewData['_jsArr'][] = $jsSrc . '?v=' . $this->_assetsVersion;
+		$this->viewData['_jsArr'][] = $this->config->item('base_url') . $jsSrc . '?v=' . $this->_assetsVersion;
 	}
 
 	public function addCSS($cssSrc)
 	{
-		$this->viewData['_cssArr'][] = $cssSrc . '?v=' . $this->_assetsVersion;
+		$this->viewData['_cssArr'][] = $this->config->item('base_url') . $cssSrc . '?v=' . $this->_assetsVersion;
 	}
 
 	protected function ajaxResponse($statusId, $message=null, $dataArr=array())

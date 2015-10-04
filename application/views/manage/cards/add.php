@@ -6,19 +6,19 @@
 	  </div>
 	  <div class="panel-body">
 
-<form>
+<form method="POST" action="<?php echo site_url("manage/cards/add");?>" name="add-frm">
   <fieldset>
     <div class="form-group">
-      <label for="disabledTextInput">Value</label>
+      <label for="value">Value</label>
 		<div class="form-group input-group">
 		    <span class="input-group-addon">$</span>
-		    <input type="number" class="form-control text-right" placeholder="100">
+		    <input type="number" class="form-control text-right" placeholder="100" name="value" id="value">
 		    <span class="input-group-addon">.00</span>
 		</div>
     </div>
     <div class="form-group">
-      <label for="disabledSelect">Customer</label>
-      <input type="text" class="form-control" pattern="\d{3}[\-]\d{3}[\-]\d{4}" placeholder="xxx-xxx-xxxx">
+      <label for="phone">Customer</label>
+      <input type="text" class="form-control phone" pattern="\d{3}[\-]\d{3}[\-]\d{4}" placeholder="xxx-xxx-xxxx" name="phone" id="phone">
     </div>
 
     <button type="submit" class="btn btn-primary pull-right">Save</button>
