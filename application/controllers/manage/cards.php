@@ -55,7 +55,7 @@ class Cards extends Backend_Controller
 			$card['phone'] = $this->input->post('phone');
 			//update giftcard
 			$res = $this->cards_model->update( $card );
-			$this->session->set_flashdata('res', array('status' => 0, 'msg' => 'saved') );
+			$this->session->set_flashdata('res', array('status' => 0, 'msg' => 'updated') );
 			if( $res ) redirect("manage/cards/edit/{$cardId}");
 		}
 

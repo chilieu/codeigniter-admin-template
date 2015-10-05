@@ -13,7 +13,7 @@
 <?php if ($this->session->flashdata('res')): ?>
 	<?php $message = $this->session->flashdata('res');?>
 	<?php if( $message['status'] == 0):?>
-		<div class="alert alert-success" role="alert">Well done! You successfully <?php $message['msg'];?> it</div>
+		<div class="alert alert-success" role="alert">Well done! You successfully <?php echo $message['msg'];?> it</div>
 	<?php else:?>
 		<div class="alert alert-danger" role="alert">Oh snap! somethings happended</div>
 	<?php endif;?>

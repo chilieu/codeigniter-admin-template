@@ -12,6 +12,11 @@ class Backend_Controller extends Global_Controller
 		}
 		parent::__construct($theme);
 
+		if ( !$this->session->userdata('admin_id') ) {
+			redirect('manage/auth/');
+			die();
+		}
+
 	}
 
 }
