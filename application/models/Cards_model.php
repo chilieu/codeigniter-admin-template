@@ -18,7 +18,7 @@ class Cards_model extends CI_Model {
         public function add($data)
         {
         	if(!$data) return false;
-            $data['created'] = time();
+            $data['created'] = date("Y-m-d H:i:s");
             $this->db->insert($this->_table, $data);
             return $this->db->insert_id();
         }
@@ -28,6 +28,22 @@ class Cards_model extends CI_Model {
         	if(!$data) return false;
 
             return $this->db->update('cards', $data, array('id' => $data['id']));
+        }
+
+        public function remove($cardId)
+        {
+            if(!$cardId) return false;
+
+            return $this->db->delete('cards', array('id' => $cardId));
+        }
+
+        public function get_card($cardId)
+        {
+            if(!$cardId) return false;
+            $this->db->where('id', $cardId);
+            $query = $this->db->get('cards');
+            $re = $query->result();
+            return $re[0];
         }
 
 }

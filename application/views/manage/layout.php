@@ -30,6 +30,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<? echo base_url();?>public/js/bootstrap.min.js"></script>
+
     <? foreach ($_jsArr as $js) : ?>
     <script src="<?=$js?>"></script>
     <? endforeach; ?>
@@ -98,12 +101,6 @@ addGrowlMessage(0, "teset");
 
     </div>
     <!-- /#wrapper -->
-
-    <!-- jQuery -->
-    <script src="<? echo base_url();?>/public/js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<? echo base_url();?>/public/js/bootstrap.min.js"></script>
 
 </body>
 

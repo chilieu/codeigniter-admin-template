@@ -11,10 +11,15 @@ class Cards extends Backend_Controller
 
 	public function index()
 	{
-		$this->addJS('/public/js/datatables/jquery.dataTables.min.js');
-		$this->addCSS('/public/js/datatables/datatables.css');
+		$this->addJS('public/js/datatables/jquery.dataTables.min.js');
+		$this->addCSS('public/js/datatables/datatables.css');
 
-		$this->viewData['_body'] = $this->load->view( $this->APP . '/cards/index', array(), true);
+		$cards = array();
+		$this->load->model('cards_model');
+		$cards = $this->cards_model->get_last_entries( 500 );
+
+
+		$this->viewData['_body'] = $this->load->view( $this->APP . '/cards/index', array("cards" => $cards), true);
 		$this->render( $this->layout );
 	}
 
@@ -23,13 +28,39 @@ class Cards extends Backend_Controller
 		if( $this->input->post() ){
 			$card['value'] = $this->input->post('value');
 			$card['phone'] = $this->input->post('phone');
-			print_r($card);
 			//insert giftcard
 			$this->load->model('cards_model');
 			$res = $this->cards_model->add( $card );
-			if( $res ) redirect("manage/cards");
+			$this->session->set_flashdata('res', array('status' => 0, 'msg' => 'saved') );
+			if( $res ) redirect("manage/cards/edit/{$res}");
 		}
 		$this->viewData['_body'] = $this->load->view( $this->APP . '/cards/add', array(), true);
+		$this->render( $this->layout );
+	}
+
+	public function delete($cardId)
+	{
+		if( !$cardId ) return false;
+		$this->load->model('cards_model');
+		$res = $this->cards_model->remove( $cardId );
+		if( $res ) true;
+	}
+
+	public function edit($cardId)
+	{
+		$this->load->model('cards_model');
+		if( $this->input->post() && $cardId ){
+			$card['id'] = $cardId;
+			$card['value'] = $this->input->post('value');
+			$card['phone'] = $this->input->post('phone');
+			//update giftcard
+			$res = $this->cards_model->update( $card );
+			$this->session->set_flashdata('res', array('status' => 0, 'msg' => 'saved') );
+			if( $res ) redirect("manage/cards/edit/{$cardId}");
+		}
+
+		$card = $this->cards_model->get_card( $cardId );
+		$this->viewData['_body'] = $this->load->view( $this->APP . '/cards/edit', array( 'card' => $card ), true);
 		$this->render( $this->layout );
 	}
 

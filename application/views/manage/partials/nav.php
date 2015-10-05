@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Giftcard Admin</a>
+                <a class="navbar-brand" href="<?php echo site_url('manage/cards');?>">Giftcard Admin</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -28,24 +28,21 @@
                 </li>
             </ul>
 
-
-
-
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <!--li class="active">
                         <a href="<?php echo site_url('manage');?>"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-                    </li>
+                    </li-->
                     <li>
                         <a href="<?php echo site_url('manage/cards');?>"><i class="fa fa-fw fa-table"></i> Cards</a>
                     </li>
-                    <li>
+                    <!--li>
                         <a href="<?php echo site_url('manage/customers');?>"><i class="fa fa-fw fa-bar-chart-o"></i> Customers</a>
                     </li>
                     <li>
                         <a href="<?php echo site_url('manage/staffs');?>"><i class="fa fa-fw fa-bar-chart-o"></i> Staffs</a>
-                    </li>
+                    </li-->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
